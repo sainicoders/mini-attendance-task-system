@@ -9,11 +9,30 @@ const Attendance = sequelize.define(
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    date: DataTypes.DATEONLY,
-    check_in_time: DataTypes.TIME,
+
+    date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+
+    check_in_time: {
+      type: DataTypes.DATE,  
+      allowNull: false,
+    },
+
+    check_out_time: {
+      type: DataTypes.DATE,
+      allowNull: true,  
+    },
   },
   {
-    indexes: [{ unique: true, fields: ["UserId", "date"] }],
+    timestamps: true,  
+    indexes: [
+      {
+        unique: true,
+        fields: ["UserId", "date"], 
+      },
+    ],
   }
 );
 
